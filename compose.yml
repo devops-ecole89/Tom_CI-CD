@@ -1,0 +1,29 @@
+services:
+  machine1:
+    image: app_web
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app_web_container
+    networks:
+      custom_network:
+        ipv4_address: 192.168.1.10
+  machine2:
+    image: app_web
+    container_name: app_web_container_2
+    networks:
+      custom_network:
+        ipv4_address: 192.168.1.20
+  machine3:
+    image: app_web
+    container_name: app_web_container_3
+    networks:
+      custom_network:
+        ipv4_address: 192.168.1.30
+
+networks:
+  custom_network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 192.168.1.0/24

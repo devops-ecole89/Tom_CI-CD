@@ -1,0 +1,47 @@
+- name: Setup environment
+  hosts: all
+  become: true
+  remote_user: ubuntu
+  vars:
+    ansible_become_password: "password"
+  tasks:
+    # update system
+    - name: Update and upgrade the system
+      apt:
+        update_cache: yes
+        upgrade: full
+
+    # Install dependencies system
+    - name: Install required system packages
+      apt:
+        name:
+          - git
+          - python3-git
+          - python3-pip
+          - python3-dev
+          - build-essential
+          - libssl-dev
+          - libffi-dev
+          - python3-setuptools
+          - python3-venv
+        state: present
+
+    # Install dependencies
+    - name: Install Python packages
+      apt:
+        name:
+          - python3-wheel
+          - python3-flask
+          - python3-pytest
+        state: present
+
+    # Clone repo
+    - name: Clone the Git repository
+      git:
+        repo: "https://zedst3r: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@github.com/devops-ecole89/Tom.git"
+        dest: "/home/ubuntu/Documents/devopsproject/Tom"
+        version: dev
+
+    # Starting web app
+    - name: Ensure Python application is running
+      shell: python3 /home/ubuntu/Documents/devopsproject/Tom/devopsproject.py &
