@@ -1,30 +1,30 @@
 # Tom_CI-CD
 
-## Prérequis
+## Prerequisites
 
-- **Docker** : Assurez-vous que Docker est installé et configuré.
-- **Ansible** : Pour exécuter les playbooks Ansible et déployer les containers
-- **Python** : Nécessaire pour exécuter les scripts Python inclus.
+- **Docker** : Ensure Docker is installed and properly configured.
+- **Ansible** : Required to execute Ansible playbooks and deploy containers.
+- **Python** : Necessary to run the included Python scripts.
 
 ## Instructions
 
-1. **Configurer l'environnement** :
-   - Mettez à jour le fichier `inventory.cfg` avec vos hôtes cibles.
-   - Configurez les variables nécessaires dans les playbooks Ansible.
+1. **Set Up the Environment:** :
+   - Update the `inventory.cfg` file with your target hosts.
+   - Configure the required variables in the Ansible playbooks.
 
 2. **Lancer l'environnement** :
-   - Utilisez `docker-compose` pour déployer l'application en exécutant :
+   - Use `docker-compose` to deploy the application by running :
      ```bash
      docker-compose up -d
      ansible all -i inventory.cfg
      ```
 
-3. **Exécuter les playbooks Ansible** :
-   - Pour tester la connectivité, exécutez :
+3. **Run Ansible playbooks** :
+   - To test connectivity, run :
      ```bash
      ansible-playbook -i inventory.cfg ping_playbook.yml
      ```
-   - Pour configurer l'environnement, exécutez :
+   - To configure the environment, run :
      ```bash
      ansible-playbook -i inventory.cfg setup_environment.yml
      ```
